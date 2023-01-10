@@ -3,22 +3,9 @@ const Client = require("../models/Cliente");
 const Item = require("../models/Item");
 const Sale = require("../models/Venda");
 
-// app.get("/", (req, res) => {
-//   res.json([
-//     {
-//       nome: "Joao",
-//       id: 12,
-//     },
-//     {
-//       nome: "Carlos",
-//       id: 21,
-//     },
-//   ]);
-// });
-
 router.post("/client/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, pagamento, cpf, telefone, email, cidade, rua, numero } =
+  const { firstIndi, secondIndi, thirdIndi, name, pagamento, cpf, telefone, email, cidade, rua, numero } =
     req.body;
   const client = {
     id,
@@ -30,6 +17,9 @@ router.post("/client/:id", async (req, res) => {
     cidade,
     rua,
     numero,
+    firstIndi,
+    secondIndi,
+    thirdIndi
   };
 
   try {
@@ -50,7 +40,7 @@ router.get("/client", async (req, res) => {
 });
 
 router.put("/client", async (req, res) => {
-  const { id, name, pagamento, cpf, telefone, email, cidade, rua, numero } =
+  const { id, firstIndi, secondIndi, thirdIndi, name, pagamento, cpf, telefone, email, cidade, rua, numero } =
     req.body;
   const client = {
     id,
@@ -62,6 +52,9 @@ router.put("/client", async (req, res) => {
     cidade,
     rua,
     numero,
+    firstIndi,
+    secondIndi,
+    thirdIndi
   };
   try {
     const upd = await Client.updateOne({ id: id }, client);
@@ -160,7 +153,10 @@ router.delete("/item/:id", async (req, res) => {
 
 router.post("/sale/:name/:id/:rota/:pagamento", async (req, res) => {
   const { name, id, rota, pagamento } = req.params;
-  const data = new Date().toISOString().slice(0, 10);
+  const year = new Date().toISOString().slice(0,4)
+  const month = new Date().toISOString().slice(5,7)
+  const day = new Date().toISOString().slice(8,10)
+  const data = `${day}/${month}/${year}`
   const items = req.body;
   const sale = {
     id,

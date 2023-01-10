@@ -9,7 +9,10 @@ const Client = mongoose.model("Client", {
   email: String,
   cidade: String,
   rua: String,
-  numero: Number
+  numero: Number,
+  firstIndi: String,
+  secondIndi: String,
+  thirdIndi: String,
 });
 
-module.exports = Client
+module.exports = Client;
