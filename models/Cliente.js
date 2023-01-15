@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Client = mongoose.model("Client", {
   id: Number,
   name: String,
-  pagamento: String,
+  cnpj: String,
   cpf: String,
   telefone: String,
   email: String,

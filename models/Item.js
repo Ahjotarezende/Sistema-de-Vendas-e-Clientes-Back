@@ -5,7 +5,7 @@ const Item = mongoose.model("Item", {
   name: String,
   vista: Number,
   prazo: Number,
-  cheque: Number,
+  viagem: Number,
   quantidade: Number,
   compra: Number,
 });
