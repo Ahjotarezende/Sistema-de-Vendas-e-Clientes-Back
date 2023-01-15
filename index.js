@@ -23,7 +23,7 @@ mongoose
     `mongodb+srv://${DB_USER}:${DB_PWD}@apiloja.qr0hcq6.mongodb.net/bancoLoja?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(process.env.PORT || 5000);
     console.log("Conectado");
   })
   .catch((err) => {
