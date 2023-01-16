@@ -22,7 +22,7 @@ const DB_PWD = process.env.DB_PWD;
 
 mongoose
   .connect(
-    `mongodb+srv://${DB_USER}:${DB_PWD}@apiloja.qr0hcq6.mongodb.net/bancoLoja?retryWrites=true&w=majority`
+    `mongodb+srv://${DB_USER}:${DB_PWD}@apiloja.3hkm7zg.mongodb.net/bancoLoja?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(port);
