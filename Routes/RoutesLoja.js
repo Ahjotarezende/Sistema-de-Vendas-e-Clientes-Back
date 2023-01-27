@@ -190,6 +190,7 @@ router.post("/sale/:name/:id/:pagamento", async (req, res) => {
     items,
     rota,
   };
+  items.splice(items.length-1, 1)
   try {
     await Sale.create(sale);
     res.status(201).json({ message: "Inserção concluida" });
