@@ -182,6 +182,7 @@ router.post("/sale/:name/:id/:pagamento", async (req, res) => {
   const data = `${day}/${month}/${year}`;
   const items = req.body;
   const rota = items[items.length-1];
+  items.splice(items.length-1, 1)
   const sale = {
     id,
     name,
@@ -190,7 +191,6 @@ router.post("/sale/:name/:id/:pagamento", async (req, res) => {
     items,
     rota,
   };
-  items.splice(items.length-1, 1)
   try {
     await Sale.create(sale);
     res.status(201).json({ message: "Inserção concluida" });
