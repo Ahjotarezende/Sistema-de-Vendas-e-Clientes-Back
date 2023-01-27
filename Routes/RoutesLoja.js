@@ -174,13 +174,14 @@ router.delete("/item/:id", async (req, res) => {
   }
 });
 
-router.post("/sale/:name/:id/:rota/:pagamento", async (req, res) => {
-  const { name, id, rota, pagamento } = req.params;
+router.post("/sale/:name/:id/:pagamento", async (req, res) => {
+  const { name, id, pagamento } = req.params;
   const year = new Date().toISOString().slice(0, 4);
   const month = new Date().toISOString().slice(5, 7);
   const day = new Date().toISOString().slice(8, 10);
   const data = `${day}/${month}/${year}`;
   const items = req.body;
+  const rota = items[items.length-1];
   const sale = {
     id,
     name,
@@ -189,7 +190,6 @@ router.post("/sale/:name/:id/:rota/:pagamento", async (req, res) => {
     items,
     rota,
   };
-
   try {
     await Sale.create(sale);
     res.status(201).json({ message: "Inserção concluida" });
