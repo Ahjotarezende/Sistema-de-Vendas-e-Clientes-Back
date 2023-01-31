@@ -50,6 +50,16 @@ router.get("/client", async (req, res) => {
   }
 });
 
+router.get("/client/:name", async (req, res) => {
+  const { name } = req.params;
+  try {
+    const client = await Client.findOne({name: name});
+    res.status(200).json(client);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
 router.put("/client", async (req, res) => {
   const {
     id,
