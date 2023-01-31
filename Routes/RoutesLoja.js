@@ -51,7 +51,7 @@ router.get("/client", async (req, res) => {
 });
 
 router.get("/client/:id", async (req, res) => {
-  const id = req.params;
+  const { id } = req.params;
   try {
     const client = await Client.findOne({ id: id });
     res.status(200).json(client);
