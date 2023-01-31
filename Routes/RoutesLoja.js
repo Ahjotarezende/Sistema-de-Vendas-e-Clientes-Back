@@ -50,10 +50,10 @@ router.get("/client", async (req, res) => {
   }
 });
 
-router.get("/client/:name", async (req, res) => {
-  const { name } = req.params;
+router.get("/client/:id", async (req, res) => {
+  const id = req.params;
   try {
-    const client = await Client.findOne({name: name});
+    const client = await Client.findOne({ id: id });
     res.status(200).json(client);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -191,8 +191,8 @@ router.post("/sale/:name/:id/:pagamento", async (req, res) => {
   const day = new Date().toISOString().slice(8, 10);
   const data = `${day}/${month}/${year}`;
   const items = req.body;
-  const rota = items[items.length-1];
-  items.splice(items.length-1, 1)
+  const rota = items[items.length - 1];
+  items.splice(items.length - 1, 1);
   const sale = {
     id,
     name,
