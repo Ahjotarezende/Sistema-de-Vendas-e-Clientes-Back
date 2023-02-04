@@ -3,8 +3,13 @@ const Client = require("../models/Cliente");
 const Item = require("../models/Item");
 const Sale = require("../models/Venda");
 
-router.post("/client/:id", async (req, res) => {
-  const { id } = req.params;
+router.post("/client", async (req, res) => {
+  const allClients = await Client.find();
+  const id = allClients
+    ? allClients.reduce((prev, current) => {
+        return prev.id > current.id ? prev.id : current.id;
+      }) + 1
+    : 1;
   const {
     firstIndi,
     secondIndi,
@@ -116,8 +121,13 @@ router.delete("/client/:id", async (req, res) => {
   }
 });
 
-router.post("/item/:id", async (req, res) => {
-  const { id } = req.params;
+router.post("/item", async (req, res) => {
+  const allItens = await Item.find();
+  const id = allItens
+    ? allItens.reduce((prev, current) => {
+        return prev.id > current.id ? prev.id : current.id;
+      }) + 1
+    : 1;
   const { name, vista, prazo, viagem, quantidade, compra } = req.body;
   const item = {
     id,
@@ -184,8 +194,14 @@ router.delete("/item/:id", async (req, res) => {
   }
 });
 
-router.post("/sale/:name/:id/:pagamento", async (req, res) => {
-  const { name, id, pagamento } = req.params;
+router.post("/sale/:name/:pagamento", async (req, res) => {
+  const allSales = await Sale.find();
+  const id = allSales
+    ? allSales.reduce((prev, current) => {
+        return prev.id > current.id ? prev.id : current.id;
+      }) + 1
+    : 1;
+  const { name, pagamento } = req.params;
   const year = new Date().toISOString().slice(0, 4);
   const month = new Date().toISOString().slice(5, 7);
   const day = new Date().toISOString().slice(8, 10);
